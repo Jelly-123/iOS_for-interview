@@ -34,5 +34,27 @@ func lengthOfLongestSubstring(_ s: String) -> Int {
     return max(longest, array.count - left)
 }
 
-print("number:",lengthOfLongestSubstring("pwwkew"))
+print("number:",lengthOfLongestSubstring("abcabcbb"))
+func lengthOfLongestSubstring1(_ s: String) ->Int{
+    var dic = Dictionary<Character,Int>()
+    var left = 0
+    var longest = 0
+    var array = Array(s)
+    for (index,value) in s.enumerated() {
+        if dic[value] != nil{
+            longest = max(longest, index-left)
+            //如果在字典里
+            while (array[left] != value){
+                dic.removeValue(forKey: array[left])    //当前字符串与滑窗最左边的是否一样，如果一样则只需要右移动。如果不一样就删除。后面出现则加就行了
+                left += 1
+            }
+            left += 1
+        }else{
+            dic[value] = index
+        }
+    }
+    print(left)
+    return max(longest, array.count - left)
+}
 
+print("number1:",lengthOfLongestSubstring1("abcdef"))

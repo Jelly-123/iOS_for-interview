@@ -26,6 +26,14 @@ int* twoSum(int* nums, int numsSize, int target) {
         }
     return array;
 }
+int removeDuplicates(int A[], int n) {
+    if(n < 2) return n;
+    int id = 1;
+    for(int i = 1; i < n; ++i)
+        if(A[i] != A[i-1])
+            A[id++] = A[i];
+    return id;
+}
 int main(int argc, const char * argv[]) {
     // insert code here...
 
@@ -35,6 +43,8 @@ int main(int argc, const char * argv[]) {
 
     printf("twoSum:%d，%d",result[0],result[1]);
 
+    int numss[3] = {1,1,2};
+    printf("%d",removeDuplicates(numss, 3));
    
     return 0;
 }
